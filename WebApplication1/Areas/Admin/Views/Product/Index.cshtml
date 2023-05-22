@@ -1,0 +1,68 @@
+﻿@model List<Product>
+@{
+    int count = 1;
+}
+
+<div class="d-flex justify-content-end mb-2">
+</div>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="container card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Number
+                            </th>
+                            <th>
+                                Product Name
+                            </th>
+                            <th>
+                                Ingredients
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th class="d-flex justify-content-end">
+                                <a class="btn btn-success text-light" asp-area="Admin" asp-controller="Product" asp-action="Create">Create Product</a>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td> @count</td>
+
+                                <td>
+                                    @item.Name
+                                </td>
+                                <td>
+                                    @item.Ingredients
+                                </td>
+                                <td>
+                                    @item.Price
+                                </td>
+                                <td>
+                                    <img src="~/assets/img/@item.ImagePath" style="height:150px; width:150px;"></img>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary text-light">Detail</a>
+                                    <a class="btn btn-warning text-light" asp-area="Admin" asp-controller="Product" asp-action="Update" asp-route-Id="@item.Id">Update</a>
+                                    <a class="btn btn-danger text-light" asp-area="Admin" asp-controller="Product" asp-action="Delete" asp-route-Id="@item.Id">Delete</a>
+                                </td>
+                            </tr>
+                            count++;
+                        }
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
